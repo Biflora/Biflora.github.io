@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F02%2F06%2FHello-World%2F</url>
+    <content type="text"><![CDATA[Hello World 咕到春节才写第一篇并且上线 语文差点垫底所以文笔较差多见谅(…以后估计也不会有什么长进 该博客大多是和OI相关的题解/游记/学习笔记/…有关的 也会发部分个人的总结之类的(?本质问号bot 12345#include&lt;cstdio&gt;int main()&#123; puts("Hello World"); return 0;&#125; 以上、]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
+      </tags>
+  </entry>
+</search>
