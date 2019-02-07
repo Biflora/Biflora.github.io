@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="$Description$给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数要保证这$k$个数大于剩下$r-l-k+1$个数若无解,则输出NIE,否则,输出TAK,并给出序列$a$">
+  <meta name="description" content="Luogu P3588 $Description$给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数要保证这$k$个数大于剩下$r-l-k+1$个数若无解,则输出NIE,否则,输出TAK,并给出序列$a$">
 <meta name="keywords" content="线段树,拓扑排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[POI2015] Pustynia">
 <meta property="og:url" content="http://yoursite.com/2019/02/07/POI2015-Pustynia/index.html">
 <meta property="og:site_name" content="Biflora&#39;s Blog">
-<meta property="og:description" content="$Description$给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数要保证这$k$个数大于剩下$r-l-k+1$个数若无解,则输出NIE,否则,输出TAK,并给出序列$a$">
+<meta property="og:description" content="Luogu P3588 $Description$给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数要保证这$k$个数大于剩下$r-l-k+1$个数若无解,则输出NIE,否则,输出TAK,并给出序列$a$">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-07T12:55:01.578Z">
+<meta property="og:updated_time" content="2019-02-07T14:50:00.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[POI2015] Pustynia">
-<meta name="twitter:description" content="$Description$给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数要保证这$k$个数大于剩下$r-l-k+1$个数若无解,则输出NIE,否则,输出TAK,并给出序列$a$">
+<meta name="twitter:description" content="Luogu P3588 $Description$给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数要保证这$k$个数大于剩下$r-l-k+1$个数若无解,则输出NIE,否则,输出TAK,并给出序列$a$">
 
 
 
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2019-02-07 20:10:52 / 修改时间：20:55:01" itemprop="dateCreated datePublished" datetime="2019-02-07T20:10:52+08:00">2019-02-07</time>
+              <time title="创建时间：2019-02-07 20:10:52 / 修改时间：22:50:00" itemprop="dateCreated datePublished" datetime="2019-02-07T20:10:52+08:00">2019-02-07</time>
             
 
             
@@ -501,7 +501,8 @@
       
 
       
-        <h3 id="Description"><a href="#Description" class="headerlink" title="$Description$"></a>$Description$</h3><p>给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.<br>现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数<br>要保证这$k$个数大于剩下$r-l-k+1$个数<br>若无解,则输出NIE,否则,输出TAK,并给出序列$a$</p>
+        <p><a href="https://www.luogu.org/problemnew/show/P3588" target="_blank" rel="noopener">Luogu P3588</a></p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="$Description$"></a>$Description$</h3><p>给定一个长度为$n$的$a$正整数序列,$a_imax=1e9$,并给出$s$个数列中已知的数.<br>现给出$m$条信息,信息内容如下:给定$l,r,k$,接下来给出$k$个数<br>要保证这$k$个数大于剩下$r-l-k+1$个数<br>若无解,则输出NIE,否则,输出TAK,并给出序列$a$</p>
 <a id="more"></a>
 <h3 id="Solution"><a href="#Solution" class="headerlink" title="$Solution$"></a>$Solution$</h3><p>这道题的弱化版<a href="https://www.luogu.org/problemnew/show/P3275" target="_blank" rel="noopener">SCOI 2011 糖果</a><br>弱化版为差分约束裸题,也可以用缩点+拓扑排序解决<br>题中每一个$a_i&lt;a_j$的约束条件也可以化成拓扑排序找环以求解<br>给出区间的$k$个点把该区间分成$k+1$个子区间<br>因为给出的$pos_i$单调递增,区间连续<br>那就可以用线段树优化建边了<br>判无解有三种情况:</p>
 <ul>
