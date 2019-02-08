@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Biflora&#39;s Blog">
 <meta property="og:description" content="网络流总结   $1. \ Code$ 最大流">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-08T12:36:06.759Z">
+<meta property="og:updated_time" content="2019-02-08T14:35:32.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flows">
 <meta name="twitter:description" content="网络流总结   $1. \ Code$ 最大流">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-08 20:36:06" itemprop="dateModified" datetime="2019-02-08T20:36:06+08:00">2019-02-08</time>
+                <time title="修改时间：2019-02-08 22:35:32" itemprop="dateModified" datetime="2019-02-08T22:35:32+08:00">2019-02-08</time>
               
             
           </span>
@@ -533,11 +533,9 @@
 <li><font color="grey"><a href="https://www.luogu.org/problemnew/show/P4001" target="_blank" rel="noopener">BZOJ1001&amp;&amp;Luogu P4001 狼抓小粉兔</a></font><br>根据最大流=最小割=对偶图最短路,根据题意无向图直接建双向边即可</li>
 <li><font color="grey"><a href="https://www.luogu.org/problemnew/show/P2057" target="_blank" rel="noopener">Luogu P2057 SHOI2007 善意的投票</a></font><br>先按同意不同意建出两个$S$和$T$不同的集合,直接根据是否是朋友连双向边即可,最小割=最大流</li>
 <li><font color="grey"><a href="https://www.luogu.org/problemnew/show/P3410" target="_blank" rel="noopener">Luogu P3410 拍照</a></font><br>经典的最大权闭合子图例题,<br\><br> $s​$连正权点$v_i​$,$t​$连负权点$v_i​$,边容量为$\left| w_v\right|​$<br\><br> 相关点连边$E​${$u,v,inf​$}<br> 跑最小割,$ans=​$$\sum w_i -​$最小割<br> 若求方案,在残余网格图中<del>瞎搞</del>就行了</br\></br\></li>
-<li><font color="yellow">$\bigstar$ </font><a href="https://www.luogu.org/problemnew/show/P3980" target="_blank" rel="noopener">Luogu P3980 [NOI2008] 志愿者招募(!)</a><br>题意大概如下:<br>有$n$天每天需要$a_i$个人,有$m$种志愿者,每种志愿者包含如下信息<br>每种志愿者可以从$s_i$天工作到$t_i$天,每个人价格为$c_i$元,人数无限制<br>考虑如何建图<br>题目的限制条件是第$i$天要至少有$a_i$个人<br>直接建图是不可取的,每天需要的人力不同<br>对于一个志愿者{$s_i,t_i,c_i$}<br>可以用一条边来表示其覆盖$s_i$到$t_i$的全部区域,费用为$c_i$<br>考虑流量分配<br>源点连第一天流量为INF,汇点连$n+1$个点流量为INF<br>既然要满足志愿者可以连续工作且每天至少$a_i$人<br>那么不妨直接将最大流分配至INF<br>让每一天连下一天的流量为INF-$a_i$<br>对于每种志愿者连一条边$E${$s_i,t_i+1,inf,c_i$}<br>连续工作的志愿者可以走相邻天数的边,即无费用的边<br>但又需要$a_i​$的流量才能保证满流<br>这样就可以让志愿者填上去,就保证费用和人数限制的正确性了</li>
-<li><p><a href="https://www.luogu.org/problemnew/show/P2774" target="_blank" rel="noopener">Luogu P2774 方格取数问题</a><br>典型的黑白染色建二分图,分奇点和偶点建二分图<br> $s$连黑点,容量为点权,黑连白,容量INF,白连$t$,容量为点权<br> 假设全局都选求出全局和 再求出最小割<br> 答案即为全局和-最小割</p>
-</li>
-<li><p><a href="https://www.luogu.org/problemnew/show/P2944" target="_blank" rel="noopener">Luogu P2944 地震损失</a><br>题意:已确定几个点不割,求最少割几个点使图不连通<br>因为是割点不是割边,所以要拆点<br>已确定点:入点出点容量为inf<br>未确定点:入点出点容量为1<br>根据题意直接建图,对于一条道路建双向容量无限的边<br>跑</p>
-</li>
+<li>&lt;/font&gt;<a href="https://www.luogu.org/problemnew/show/P3980" target="_blank" rel="noopener">Luogu P3980 [NOI2008] 志愿者招募(!)</a><br>  题意大概如下:<br>  有$n$天每天需要$a_i$个人,有$m$种志愿者,每种志愿者包含如下信息<br>  每种志愿者可以从$s_i$天工作到$t_i$天,每个人价格为$c_i$元,人数无限制<br>   考虑如何建图<br>   题目的限制条件是第$i$天要至少有$a_i$个人<br>   直接建图是不可取的,每天需要的人力不同<br>   对于一个志愿者{$s_i,t_i,c_i$}<br>   可以用一条边来表示其覆盖$s_i$到$t_i$的全部区域,费用为$c_i$<br>   考虑流量分配<br>   源点连第一天流量为INF,汇点连$n+1$个点流量为INF<br>   既然要满足志愿者可以连续工作且每天至少$a_i$人<br>   那么不妨直接将最大流分配至INF<br>   让每一天连下一天的流量为INF-$a_i$<br>   对于每种志愿者连一条边$E${$s_i,t_i+1,inf,c_i$}<br>   连续工作的志愿者可以走相邻天数的边,即无费用的边<br>   但又需要$a_i$的流量才能保证满流<br>   这样就可以让志愿者填上去,就保证费用和人数限制的正确性了</li>
+<li><a href="https://www.luogu.org/problemnew/show/P2774" target="_blank" rel="noopener">Luogu P2774 方格取数问题</a><br>典型的黑白染色建二分图,分奇点和偶点建二分图<br>$s$连黑点,容量为点权,黑连白,容量INF,白连$t$,容量为点权<br>假设全局都选求出全局和 再求出最小割<br>答案即为全局和-最小割</li>
+<li><a href="https://www.luogu.org/problemnew/show/P2944" target="_blank" rel="noopener">Luogu P2944 地震损失</a><br>题意:已确定几个点不割,求最少割几个点使图不连通<br>因为是割点不是割边,所以要拆点<br>已确定点:入点出点容量为inf<br>未确定点:入点出点容量为1<br>根据题意直接建图,对于一条道路建双向容量无限的边<br>跑dinic即可</li>
 </ol>
 
       
@@ -789,7 +787,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">16k</span>
   
 
   
