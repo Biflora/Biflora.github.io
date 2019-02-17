@@ -8,8 +8,8 @@
         <category>Solution</category>
       </categories>
       <tags>
-        <tag>MCMF</tag>
         <tag>分数规划</tag>
+        <tag>MCMF</tag>
       </tags>
   </entry>
   <entry>
@@ -20,9 +20,9 @@
         <category>Solution</category>
       </categories>
       <tags>
-        <tag>分数规划</tag>
         <tag>DP</tag>
         <tag>背包</tag>
+        <tag>分数规划</tag>
       </tags>
   </entry>
   <entry>
@@ -45,9 +45,9 @@
         <category>Notes</category>
       </categories>
       <tags>
-        <tag>MCMF</tag>
         <tag>最大流</tag>
         <tag>最小割</tag>
+        <tag>MCMF</tag>
       </tags>
   </entry>
   <entry>
