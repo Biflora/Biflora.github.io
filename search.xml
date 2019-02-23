@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[TJOI2010]阅读理解]]></title>
+    <url>%2F2019%2F02%2F23%2F%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[[TJOI2010]阅读理解 $Description$给出$n$篇文章,每篇文章有$l$个单词,再给出$m$个单词,求出这$m$个词在哪几篇文章中出现过 对于100%的数据,$n\le 1000,m\le 10000$ $Solution$本来开个map直接随便草过去了但是这是字典树(Trie)的裸题就不偷懒了Trie很巧妙地把不同的具有公共前缀的单词建在同一条链上这样查询的复杂度就会低很多就是空间有点大,还算错了好几次(菜那么这题就很简单了直接建出一棵Trie标记每个单词出现的文章查询的时候遍历一下就可以了 $Code$123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include&lt;bits/stdc++.h&gt;#define N 100010using namespace std;inline int read()&#123; char ch=getchar();int x=0,f=1; while(ch&lt;'0'||ch&gt;'9')&#123;if(ch=='-')f=-1;ch=getchar();&#125; while(ch&gt;='0'&amp;&amp;ch&lt;='9')&#123;x=x*10+ch-'0';ch=getchar();&#125; return x*f;&#125;char s[30];int trie[1000010][26],n,cnt,rt,m;bool vis[1001][1000001];void ins(char *s,int root,int x)&#123; for(int i=0;s[i];i++)&#123; int k=s[i]-'a'; if(!trie[root][k])trie[root][k]=++cnt; root=trie[root][k]; &#125; vis[x][root]=true;&#125;void check(char *s,int root)&#123; bool flag=false; for(int i=0;s[i];i++)&#123; int k=s[i]-'a'; if(!trie[root][k])&#123; flag=true; break; &#125; root=trie[root][k]; &#125; if(!flag)&#123; for(int i=1;i&lt;=n;i++)&#123; if(vis[i][root])&#123; printf("%d ",i); &#125; &#125; &#125; cout&lt;&lt;endl;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++)&#123; int l=read(); for(int j=1;j&lt;=l;j++)&#123; cin&gt;&gt;s; ins(s,rt,i); &#125; &#125; m=read(); for(int i=1;i&lt;=m;i++)&#123; cin&gt;&gt;s; check(s,rt); &#125; return 0;&#125; 以上、]]></content>
+      <categories>
+        <category>Solution</category>
+      </categories>
+      <tags>
+        <tag>Trie</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[SCOI2014]方伯伯运椰子]]></title>
+    <url>%2F2019%2F02%2F23%2F%5BSCOI2014%5D%E6%96%B9%E4%BC%AF%E4%BC%AF%E8%BF%90%E6%A4%B0%E5%AD%90%2F</url>
+    <content type="text"><![CDATA[[SCOI2014]方伯伯运椰子 $Description$给出$n+2$个点,$m$条边,每条边用$E$={$u,v,a,b,c,d$}表示,即$u$到$v$有一条容量为$c$的边,每单位运输量需要$d$的费用,压缩一次容量需要$a$的费用,扩容一次需要$b$的费用。 要保证每条边满负荷且总交通量(流量)不变,设调整前费用为$X$,调整之后的费用为$Y$,进行了$k$次调整,求$(X-Y)/k$的最大值 $Solution$看到式子可以很容易看出是一个分数规划的模型,考虑调整比率 $mid\times k-(X-Y)\ge 0$ 考虑如何判断上述式子是否成立第一个想到费用流,考虑建图$X-Y$可以看作$\Delta cost$那么考虑扩容和压缩如何处理扩容很显然费用即$b+d$那么压缩则应该是建$v$到$u$费用为$a-d$,且要满足容量$c&gt;0$这样就可以处理出$\Delta cost$因为此时边权为扩容or压缩一次产生的$\Delta cost’$,那么对于图中每一个环都应该满足环上点数$n$都应该满足 $ans\times n'-\Delta cost' \ge 0$ 这时$k$就是环上的点数$n’$了那么就可以知道,当$mid\ge ans$时 $mid\times n'-\Delta cost' \ge 0$ 反之 $mid\times n’-\Delta cost’&lt;0 $ 说明当图上存在负环时仍有更优解那么就可以直接用spfa判负环去判断$mid$的合法性了 $Code$12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include&lt;bits/stdc++.h&gt;#define eps 1e-3#define N 5010#define INF 0x7fffffffusing namespace std;inline int read()&#123; char ch=getchar();int x=0,f=1; while(ch&lt;'0'||ch&gt;'9')&#123;if(ch=='-')f=-1;ch=getchar();&#125; while(ch&gt;='0'&amp;&amp;ch&lt;='9')&#123;x=x*10+ch-'0';ch=getchar();&#125; return x*f;&#125;struct node&#123; int v,nxt,w;&#125;e[N&lt;&lt;1];int head[N],cnt,n,m;bool vis[N],flag;double dis[N];void add(int u,int v,int w)&#123; e[++cnt].v=v; e[cnt].w=w; e[cnt].nxt=head[u]; head[u]=cnt;&#125;bool spfa(int u,double mid)&#123; vis[u]=true; for(int i=head[u];i;i=e[i].nxt)&#123; int v=e[i].v,w=e[i].w; if(dis[v]&gt;dis[u]+w+mid)&#123; dis[v]=dis[u]+w+mid; if(vis[v])return true; if(spfa(v,mid))return true; &#125; &#125; vis[u]=false; return false;&#125;bool check(double mid)&#123; memset(dis,0x3f,sizeof(dis)); memset(vis,false,sizeof(vis)); flag=false; for(int i=1;i&lt;=n;i++)&#123; if(spfa(i,mid))return true; &#125; return false;&#125;int main()&#123; n=read()+2,m=read(); for(int i=1;i&lt;=m;i++)&#123; int u=read(),v=read(),a=read(),b=read(),c=read(),d=read(); if(c)add(v,u,a-d); add(u,v,b+d); &#125; double l=0.00,r=1000000000.00,mid; while(r-l&gt;=eps)&#123; mid=(l+r)/2; if(check(mid))l=mid; else r=mid; &#125; printf("%.2lf",l); return 0;&#125; 以上、]]></content>
+      <categories>
+        <category>Solution</category>
+      </categories>
+      <tags>
+        <tag>分数规划</tag>
+        <tag>负环</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[SDOI 2017] 新生舞会]]></title>
     <url>%2F2019%2F02%2F08%2F%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[[SDOI 2017] 新生舞会 $Description$给定$n$个男生,$n$个女生,每一个男生对应每一个女生都有一个$a_{i,j}$同时每一个男生对应每一个女生有一个$b_{i,j}$令$C=\frac{\sum a_i}{\sum b_i}$,试求出$C$最大值 $Solution$化简该式子 $\sum a_i-C*\sum b_i=0$ 照样二分一个$mid$,因为给出一张二分图,所以尝试用费用流来判$mid​$的合法性考虑如何建图建源汇,源点连男生,男生连女生,女生连汇点,边的容量均为1考虑费用的分配既然要满足 $\sum a_i-mid*\sum b_i\ge0$ 那不妨将男女之间连边的费用设为$a_{i,j}-mid\times b_{i,j}$这样跑一遍最大费用最大流,再试判断最大费用是否满足上式这题卡常(开了O2还是跑了800+ms $Code$123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123#include&lt;bits/stdc++.h&gt;const double eps=1e-7;const int N=5005;using namespace std;inline int read()&#123; char ch=getchar();int x=0,f=1; while(ch&lt;'0'||ch&gt;'9')&#123;if(ch=='-')f=-1;ch=getchar();&#125; while(ch&gt;='0'&amp;&amp;ch&lt;='9')&#123;x=x*10+ch-'0';ch=getchar();&#125; return x*f;&#125; struct node&#123; int v,nxt,w; double c;&#125;e[N&lt;&lt;2];int head[N&lt;&lt;1],cnt=-1;int flow[N&lt;&lt;1],pre[N&lt;&lt;1],las[N&lt;&lt;1];double dis[N&lt;&lt;1];bool vis[N];double a[101][101],b[101][101];int ans1,s,t,n,m;double ans2;void add(int u,int v,int w,double c)&#123; e[++cnt].v=v; e[cnt].w=w; e[cnt].c=c; e[cnt].nxt=head[u]; head[u]=cnt; e[++cnt].v=u; e[cnt].w=0; e[cnt].c=-c; e[cnt].nxt=head[v]; head[v]=cnt;&#125;void clear()&#123; memset(head,-1,sizeof(head)); memset(pre,0,sizeof(pre)); memset(las,0,sizeof(las)); ans1=ans2=0; cnt=-1;&#125;bool spfa()&#123; queue&lt;int&gt; q; memset(dis,-0x3f,sizeof(dis)); memset(vis,0,sizeof(vis)); memset(flow,0x3f,sizeof(flow)); q.push(s); vis[s]=true;dis[s]=0;pre[t]=-1; while(!q.empty())&#123; int u=q.front(); q.pop();vis[u]=false; for(int i=head[u];i!=-1;i=e[i].nxt)&#123; int v=e[i].v,w=e[i].w; double c=e[i].c; if(w&amp;&amp;dis[v]&lt;dis[u]+c)&#123; dis[v]=dis[u]+c; pre[v]=u; las[v]=i; flow[v]=min(flow[u],w); if(!vis[v])&#123; vis[v]=true; q.push(v); &#125; &#125; &#125; &#125; if(pre[t]!=-1)return true; return false; &#125;void mcmf()&#123; while(spfa())&#123; int now=t; ans2+=(double)flow[now]*dis[now]; while(now!=s)&#123; e[las[now]].w-=flow[t]; e[las[now]^1].w+=flow[t]; now=pre[now]; &#125; &#125;&#125;bool check(double x)&#123; clear(); for(int i=1;i&lt;=n;i++)add(s,i,1,0); for(int i=1;i&lt;=n;i++)&#123; for(int j=1;j&lt;=n;j++)&#123; add(i,j+n,1,-x*b[i][j]+a[i][j]); &#125; &#125; for(int i=1;i&lt;=n;i++)&#123; add(i+n,t,1,0); &#125; mcmf(); return ans2&gt;0;&#125;int main()&#123; n=read(); s=0,t=n*2+3; for(int i=1;i&lt;=n;i++)&#123; for(int j=1;j&lt;=n;j++)&#123; cin&gt;&gt;a[i][j]; &#125; &#125; for(int i=1;i&lt;=n;i++)&#123; for(int j=1;j&lt;=n;j++)&#123; cin&gt;&gt;b[i][j]; &#125; &#125; double l=0,r=1e4; while(r-l&gt;=eps)&#123; double mid=(l+r)/2; if(check(mid))l=mid; else r=mid; &#125; printf("%.6lf",l); return 0;&#125; 以上、 ​​​]]></content>
@@ -8,8 +32,8 @@
         <category>Solution</category>
       </categories>
       <tags>
-        <tag>分数规划</tag>
         <tag>MCMF</tag>
+        <tag>分数规划</tag>
       </tags>
   </entry>
   <entry>
