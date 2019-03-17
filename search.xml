@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[不同字串个数]]></title>
+    <url>%2F2019%2F03%2F17%2F%E4%B8%8D%E5%90%8C%E5%AD%97%E4%B8%B2%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[不同子串个数 $Description$给出一个长度为$n$的字符串,求出该串中本质不同的子串个数,$n \le 10^5$ $Solution$经典的模板题先敲出SA并求出height数组如何统计答案?答案明显等于每个后缀对子串数量的贡献减去重复的数量那么式子就很容易得出来了 $ ans=\displaystyle\sum_{i=1}^n length(n)-sa_i-height_i+1$ 注意开long long $Code$123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263// luogu-judger-enable-o2#include&lt;bits/stdc++.h&gt;const int N=100010;using namespace std;inline int read()&#123; char ch=getchar();int x=0,f=1; while(ch&lt;'0'||ch&gt;'9')&#123;if(ch=='-')f=-1;ch=getchar();&#125; while(ch&gt;='0'&amp;&amp;ch&lt;='9')&#123;x=x*10+ch-'0';ch=getchar();&#125; return x*f;&#125;int sa[N],rk[N],tax[N],tp[N],height[N];char s[N];int n,m;long long ans=0;void qsort()&#123; for(int i=0;i&lt;=m;i++)tax[i]=0; for(int i=1;i&lt;=n;i++)tax[rk[i]]++; for(int i=1;i&lt;=m;i++)tax[i]+=tax[i-1]; for(int i=n;i&gt;=1;i--)sa[tax[rk[tp[i]]]--]=tp[i];&#125;void solve()&#123; for(int i=1;i&lt;=n;i++)rk[i]=s[i]-'0'+1,tp[i]=i; qsort(); for(int w=1,p=0;p&lt;n;m=p,w&lt;&lt;=1)&#123; p=0; for(int i=1;i&lt;=w;i++)tp[++p]=n-w+i; for(int i=1;i&lt;=n;i++)if(sa[i]&gt;w)tp[++p]=sa[i]-w; qsort(); swap(tp,rk); rk[sa[1]]=p=1; for(int i=2;i&lt;=n;i++)&#123; rk[sa[i]]=(tp[sa[i]]==tp[sa[i-1]]&amp;&amp;tp[sa[i]+w]==tp[sa[i-1]+w])? p:++p; &#125; &#125;&#125;void getH()&#123; int k=0; for(int i=1;i&lt;=n;i++)&#123; if(k)k--; int j=sa[rk[i]-1]; while(s[i+k]==s[j+k])k++; height[rk[i]]=k; &#125;&#125;int main()&#123; n=read(); scanf("%s",s+1); m=100; solve();// for(int i=1;i&lt;=n;i++)&#123;// printf("%d ",sa[i]);/// &#125; getH(); for(int i=1;i&lt;=n;i++)ans+=n-sa[i]-height[i]+1; printf("%lld",ans); return 0;&#125; 以上、]]></content>
+      <categories>
+        <category>Solution</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>SA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[BJWC 2010] 外星联络]]></title>
     <url>%2F2019%2F03%2F17%2F%E5%A4%96%E6%98%9F%E8%81%94%E7%BB%9C%2F</url>
     <content type="text"><![CDATA[[BJWC 2010] 外星联络 $Description$给出一个长度为$n$的0/1串,求出该串所有出现次数大于1的子串并按字典序输出$n \le 3000$ $Solution$很显然是一道后缀数组的裸题考虑到$n$的数据很小那么直接上trie树直接计数就好了 $Code$1234567891011121314151617181920212223242526272829303132333435363738#include&lt;bits/stdc++.h&gt;#define N 9000010using namespace std;int t[N][2];char s[10010];int n,cnt,sum[N];//void ins(int i,int j)&#123;// int rt=0;// for(int i=st;i&lt;=ed;i++)&#123;// int k=s[i]-'0';// if(!t[rt][k])t[rt][k]=++cnt;// rt=t[rt][k];// sum[rt]++;// &#125;//&#125;void dfs(int u)&#123; if(sum[u]&gt;1)&#123;printf("%d\n",sum[u]);&#125; if(t[u][0])dfs(t[u][0]); if(t[u][1])dfs(t[u][1]);&#125;int main()&#123; scanf("%d%s",&amp;n,s+1); for(int i=1;i&lt;=n;i++)&#123; int rt=0; for(int j=i;j&lt;=n;j++)&#123; int k=s[j]-'0'; if(!t[rt][k])t[rt][k]=++cnt; rt=t[rt][k]; sum[rt]++; &#125; &#125; dfs(0); return 0; &#125; 以上、]]></content>
